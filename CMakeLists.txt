@@ -37,8 +37,8 @@ check_function_exists(strchr HAVE_STRCHR)
 check_function_exists(strdup HAVE_STRDUP)
 check_function_exists(strtol HAVE_STRTOL)
 
-include(CheckSymbolExists)
-check_symbol_exists(size_t "sys/types.h" HAVE_SIZE_T)
+include(CheckTypeSize)
+check_type_size("size_t" HAVE_SIZE_T)
 
 include (CheckCCompiler)
 include (CheckStdCHeaders)
