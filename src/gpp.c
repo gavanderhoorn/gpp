@@ -1128,7 +1128,7 @@ int idequal(const char *b, int l, const char *s) {
     if ((int) strlen(s) != l)
         return 0;
     for (i = 0; i < l; i++)
-        if (b[i] != s[i])
+        if (tolower(b[i])!=tolower(s[i]))
             return 0;
     return 1;
 }
