@@ -2337,6 +2337,7 @@ void ProcessModeCommand(int p1start, int p1end, int p2start, int p2end) {
 static void DoInclude(char *file_name) {
     struct INPUTCONTEXT *N;
     char *incfile_name = NULL;
+    char bug_str_buf[1024]; /* TODO: introduced a magic nr here */
     FILE *f = NULL;
     int i, j;
     int len = strlen(file_name);
@@ -2371,7 +2372,11 @@ static void DoInclude(char *file_name) {
     }
 
     if (f == NULL )
-        bug("Requested include file not found");
+    {
+        /* include name of file we're trying to include in error message */
+        _snprintf(bug_str_buf, 1024, "%s: %s", "Requested include file not found", file_name);
+        bug(bug_str_buf);
+    }
 
     N = C;
     C = malloc(sizeof *C);
